@@ -1,0 +1,189 @@
+You are to build Megatron — a production-ready, multi-tenant SaaS platform for automated content farming and performance testing. Megatron must include every feature described below and be delivered as a working MVP: all modules must be functional, no placeholder components.
+
+High-level summary:
+Megatron automates multi-platform publishing (TikTok, Instagram, YouTube Shorts, Twitter/X, LinkedIn, Reddit, Discord), supports unlimited accounts per platform, provides a central content calendar, auto-generates and posts content (text, images, memes, short-form videos), runs controlled A/B tests, scores market-fit, rotates posting patterns to minimize shadow bans, supports proxy posting at scale, provides deep analytics and AI weekly summaries, enables collaboration and approvals, and includes templates & pricing tiers.
+
+1 — Core Requirements (must be fully functional)
+Platforms & Posting
+
+Post to TikTok, Instagram (via Buffer webhook/Make.com), YouTube Shorts, Twitter/X, LinkedIn, Reddit, Discord.
+
+Connect multiple accounts per platform (unlimited). Account manager UI with status and health indicators.
+
+Publishing quotas configurable per account and per org (defaults below).
+
+Bulk upload and drag/drop assets.
+
+Quotas (default, configurable)
+
+TikTok: 3 videos / day / account
+
+Instagram: 3 posts/reels / day / account
+
+Communities (Reddit/Discord): 2 posts / day / account
+
+LinkedIn: 1–2 posts / day / account
+
+YouTube Shorts/Twitter as configured
+
+Scheduling & Calendar
+
+Central content calendar (month/week/day views), drag & drop reschedule.
+
+Slot metadata: datetime, timezone, platform, account, content type, tagline, campaign, A/B flags.
+
+Bulk CSV / Google Sheets import/export.
+
+AI Content Generation
+
+Gemini (text + multimodal) for:
+
+Long/short captions, FOMO/left-out hooks, hashtag suggestions, and image generation (multimodal).
+
+HeyGen for avatar video generation (scripts from Gemini).
+
+Image generation fallback: use Gemini vision or Stable Diffusion API if preferred.
+
+All generated content must include “left-out / FOMO” undertone when requested.
+
+Auto Rotation & Account Health
+
+Rotation scheduler that varies posting times / sequencing across accounts to reduce shadow ban risk.
+
+Content Variation Tracking to ensure not posting identical content across accounts.
+
+Account Health Monitor (proxy detection, login success rate, posting error rate).
+
+Residential proxy integration + IP rotation + account isolation.
+
+Proxy & Security
+
+Proxy connector layer (support residential & datacenter proxies).
+
+Encrypt credentials/tokens at rest.
+
+Per-account request routing through proxies.
+
+A/B Testing Suite
+
+Create split tests for caption, visual, CTA, or posting time.
+
+Randomization engine assigns controlled variants.
+
+Statistical significance calculator; auto picks winner after threshold.
+
+Visual side-by-side variant comparison with charts.
+
+Market Fit Scoring
+
+Proprietary Market Fit Score combining:
+
+Engagement metrics (views, likes, watch time)
+
+Sentiment analysis (comments)
+
+Growth / velocity (e.g., follower growth for the campaign)
+
+Display single numeric Market Fit Score + breakdown and suggestions.
+
+Analytics & Insights
+
+Unified dashboard with cross-platform metrics: views, likes, comments, watch time, CTR, conversions.
+
+Real-time updates where APIs allow.
+
+Sentiment analysis: emotion detection, topic clustering, trending sentiments.
+
+AI Weekly Summary (auto-generated): highlights, weak points, suggested next experiments.
+
+Performance comparison: heatmaps, trend lines, conversion tracking.
+
+Collaboration & Approval
+
+Workspaces per org/client. Team roles (Owner, Admin, Publisher, Approver, Viewer).
+
+Multi-stage approval flows (draft → review → approved → scheduled).
+
+Comment threads and version history for content edits.
+
+White-label reports and scheduled delivery to clients (PDF/HTML).
+
+Automation & Webhooks
+
+Smart Scheduling: AI suggests optimal times and automates placements.
+
+Content Recycling: reshare top performing posts with automatic variation.
+
+Webhook integrations: when performance thresholds met → trigger actions (e.g., notify, re-promote, post follow-ups).
+
+Zapier + Make.com connectors.
+
+Templates & Use Cases
+
+Ship templates (SaaS Product Launch Hook, B2B Pain Point Reel, UGC Product Review, etc.) with copy, hashtags, and suggested schedule.
+
+Allow custom templates and store in Template Library.
+
+Pricing & Plans (implement gating)
+
+Free: $0 forever — 10 posts/day, 1 workspace, basic analytics, community support (no Market Fit Score, no AI captions)
+
+Pro: $29/month — Unlimited accounts, full analytics, Market Fit Score, AI captions/hashtags, A/B testing
+
+Agency: $149/month — Multi-client management, white-label reports, role permissions, dedicated support
+
+2 — Technical Stack & Architecture (deliverable must follow)
+
+Frontend
+
+Next.js (App Router), React, TailwindCSS, shadcn/ui (or similar).
+
+Responsive, accessible, and highly creative UI: polished calendar, modal editors, asset library, elegant charts.
+
+Dashboard: Overview, Calendar, Studio, Queue, Analytics, Templates, Accounts, Settings.
+
+Backend
+
+Node.js + TypeScript + Express or Fastify for API.
+
+Background workers: separate Node worker processes (BullMQ) + Redis for queueing.
+
+Prisma + PostgreSQL for DB.
+
+S3 (or compatible) for media storage.
+
+Logging + monitoring (Sentry), metrics.
+
+AI & Media
+
+GEMINI_API_KEY (text & multimodal): generate copy + images.
+
+HEYGEN_API_KEY (video generation): convert scripts → avatar videos.
+
+Optional: Stable Diffusion endpoint for fallback images.
+
+Scheduler/Queue
+
+BullMQ + Redis; scalable worker pool; job retries; rate limiters per platform.
+
+Proxy Management
+
+Proxy pool with rotation logic; per-account proxy mapping.
+
+Third-Party Integrations
+
+Buffer via Make.com webhook for Instagram & LinkedIn (use provided Make webhook URL – if provided; otherwise leave env placeholder).
+
+TikTok, YouTube, Twitter/X, Reddit/Discord via respective APIs (or official SDKs).
+
+Zapier/Make for webhooks and external automations.
+
+Security
+
+Encrypt tokens at rest; rotate credentials.
+
+Role-based access control.
+
+Rate limiting and anti-abuse.
+
+3 — Environment & Secrets (create .env)

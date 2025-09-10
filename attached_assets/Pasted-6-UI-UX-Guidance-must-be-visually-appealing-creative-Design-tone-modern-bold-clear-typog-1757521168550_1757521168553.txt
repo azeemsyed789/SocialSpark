@@ -1,0 +1,97 @@
+6 — UI & UX Guidance (must be visually appealing + creative)
+
+Design tone: modern, bold, clear typography, justified white space, subtle gradient accents.
+
+Dashboard: left sidebar with big metrics cards (Daily Posts, Engagement, Market Fit Score), central campaign list, right column with quick actions.
+
+Calendar: center of product; support drag/drop, tooltips, quick edit modals.
+
+Studio: generation UI with tagline input -> live preview of caption/image/video -> edit controls -> save to Asset Library.
+
+Queue: show retry counts, error reasons, manual requeue button.
+
+Analytics: interactive charts (time series, heat maps), A/B testing results with confidence intervals, market fit meter.
+
+Templates screen: cards for each template with preview, suggested hashtags, schedule hints.
+
+Team & Approvals: clear workflow UI for approvals with comments & version history.
+
+7 — A/B Testing & Market Fit (must be functional)
+
+AB tests created from calendar slots (choose param: caption, image, CTA, schedule).
+
+System splits traffic across variants, collects metrics, computes statistical significance (e.g., t-test or bayesian uplift), auto-declare winner after threshold.
+
+Market Fit Score algorithm must combine engagement rates, sentiment, and retention into a single score (range 0–100). Show component breakdown.
+
+8 — Demo Seed Data (first run, must auto-create)
+
+When service starts in dev mode, create a demo org with:
+
+Campaign: “SaaS Product Launch Hook”
+
+3 TikTok slots (taglines provided), 3 Instagram slots, 2 Reddit slots.
+
+Preload templates (SaaS Product Launch Hook, B2B Pain Point Reel, UGC Review).
+
+Mock accounts (preview-only) so Studio generation and Queue can be run in preview mode (no external posting) to validate end-to-end flow.
+
+9 — Edge Cases, Rate Limits & Failures
+
+Rate limiter per platform (configurable) to avoid API bans.
+
+Graceful failure: on API failure mark PostJob with error, notify admins, allow manual retry.
+
+Duplicate prevention: hash caption + asset; warn if similar posted in last X days.
+
+Security: rotate keys, mask tokens, audit logs.
+
+10 — Definition of Done
+
+Full account connection flows for at least TikTok, Reddit, Discord, and Buffer webhook for Instagram/LinkedIn (Make.com).
+
+Calendar with scheduling, drag/drop, bulk import.
+
+Studio that uses Gemini + HeyGen to produce caption/image/video; assets saved in S3.
+
+Queue+worker that publishes to preview mode and to live platforms (if credentials present).
+
+A/B testing engine functioning with winner logic.
+
+Analytics dashboard showing metrics and AI weekly summaries.
+
+Team workspaces with role-based approval workflow.
+
+Demo org seeded on first run.
+
+Clean, appealing UI per specs above.
+
+11 — Delivery & Documentation
+
+Provide README.md with setup, env variables, seeding & demo steps.
+
+Provide API docs (Swagger or Postman collection).
+
+Provide deployment guides (Docker Compose + Kubernetes manifests).
+
+Provide test plan and some automated tests for key flows.
+
+12 — Optional Enhancements (nice-to-have)
+
+Auto-translate captions for different markets.
+
+Auto-generate storyboards for video shots.
+
+Integrate with ad managers for boosting winners.
+
+Native mobile app for quick approvals.
+
+Final instructions to Replit / developer:
+
+Implement everything above; do not omit features.
+
+Deliver a working app you can run locally (Docker) and a deployable manifest for K8s.
+
+Seed a demo org and ensure preview-only posting works out-of-the-box.
+
+Prioritize safety: respect platform TOS and rate limits; provide preview mode to avoid accidental mass-posting.
