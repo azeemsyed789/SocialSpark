@@ -1,0 +1,11 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Install dependencies and run dev server",
+			"command": "npm install && npm run dev",
+			"group": "build"
+		}
+	]
+}

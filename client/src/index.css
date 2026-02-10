@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(222, 47%, 11%);
+  --foreground: hsl(213, 31%, 91%);
+  --card: hsl(217, 33%, 17%);
+  --card-foreground: hsl(213, 31%, 91%);
+  --popover: hsl(217, 33%, 17%);
+  --popover-foreground: hsl(213, 31%, 91%);
+  --primary: hsl(262, 83%, 58%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(188, 84%, 43%);
+  --secondary-foreground: hsl(222, 47%, 11%);
+  --muted: hsl(215, 27%, 33%);
+  --muted-foreground: hsl(217, 10%, 64%);
+  --accent: hsl(262, 83%, 58%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 63%, 31%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --border: hsl(215, 27%, 33%);
+  --input: hsl(215, 27%, 33%);
+  --ring: hsl(262, 83%, 58%);
+  --chart-1: hsl(262, 83%, 58%);
+  --chart-2: hsl(188, 84%, 43%);
+  --chart-3: hsl(142, 76%, 36%);
+  --chart-4: hsl(47, 96%, 53%);
+  --chart-5: hsl(0, 63%, 31%);
+  --sidebar: hsl(217, 33%, 17%);
+  --sidebar-foreground: hsl(213, 31%, 91%);
+  --sidebar-primary: hsl(262, 83%, 58%);
+  --sidebar-primary-foreground: hsl(210, 40%, 98%);
+  --sidebar-accent: hsl(262, 83%, 58%);
+  --sidebar-accent-foreground: hsl(210, 40%, 98%);
+  --sidebar-border: hsl(215, 27%, 33%);
+  --sidebar-ring: hsl(262, 83%, 58%);
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: 'Fira Code', monospace;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: hsl(222, 47%, 11%);
+  --foreground: hsl(213, 31%, 91%);
+  --card: hsl(217, 33%, 17%);
+  --card-foreground: hsl(213, 31%, 91%);
+  --popover: hsl(217, 33%, 17%);
+  --popover-foreground: hsl(213, 31%, 91%);
+  --primary: hsl(262, 83%, 58%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(188, 84%, 43%);
+  --secondary-foreground: hsl(222, 47%, 11%);
+  --muted: hsl(215, 27%, 33%);
+  --muted-foreground: hsl(217, 10%, 64%);
+  --accent: hsl(262, 83%, 58%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 63%, 31%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --border: hsl(215, 27%, 33%);
+  --input: hsl(215, 27%, 33%);
+  --ring: hsl(262, 83%, 58%);
+  --chart-1: hsl(262, 83%, 58%);
+  --chart-2: hsl(188, 84%, 43%);
+  --chart-3: hsl(142, 76%, 36%);
+  --chart-4: hsl(47, 96%, 53%);
+  --chart-5: hsl(0, 63%, 31%);
+  --sidebar: hsl(217, 33%, 17%);
+  --sidebar-foreground: hsl(213, 31%, 91%);
+  --sidebar-primary: hsl(262, 83%, 58%);
+  --sidebar-primary-foreground: hsl(210, 40%, 98%);
+  --sidebar-accent: hsl(262, 83%, 58%);
+  --sidebar-accent-foreground: hsl(210, 40%, 98%);
+  --sidebar-border: hsl(215, 27%, 33%);
+  --sidebar-ring: hsl(262, 83%, 58%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer components {
+  .calendar-slot {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .calendar-slot:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+  }
+
+  .metric-card {
+    background: linear-gradient(135deg, var(--card) 0%, hsl(217, 33%, 19%) 100%);
+  }
+
+  .platform-badge {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .platform-badge.tiktok {
+    background: hsl(348, 83%, 47%);
+    color: white;
+  }
+
+  .platform-badge.instagram {
+    background: linear-gradient(45deg, hsl(329, 100%, 46%), hsl(22, 100%, 55%));
+    color: white;
+  }
+
+  .platform-badge.youtube {
+    background: hsl(0, 100%, 50%);
+    color: white;
+  }
+
+  .platform-badge.linkedin {
+    background: hsl(201, 100%, 35%);
+    color: white;
+  }
+
+  .platform-badge.twitter {
+    background: hsl(203, 89%, 53%);
+    color: white;
+  }
+
+  .platform-badge.reddit {
+    background: hsl(15, 100%, 56%);
+    color: white;
+  }
+
+  .platform-badge.discord {
+    background: hsl(235, 86%, 65%);
+    color: white;
+  }
+
+  .platform-badge.default {
+    background: hsl(215, 27%, 33%);
+    color: hsl(217, 10%, 64%);
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .status-dot.status-scheduled {
+    background: hsl(47, 96%, 53%);
+  }
+
+  .status-dot.status-posted {
+    background: hsl(142, 76%, 36%);
+  }
+
+  .status-dot.status-failed {
+    background: hsl(0, 63%, 31%);
+  }
+
+  .status-dot.status-draft {
+    background: hsl(217, 10%, 64%);
+  }
+}
+
+@layer utilities {
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+}
